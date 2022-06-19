@@ -1,16 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
+const authRouter = require('./routes/auth.routes')
 
 
 const app = express()
 //serverPort из файла default.json
 const PORT = config.get('serverPort')
 
+//розпарсить json строку
+app.use(express.json())
 
-// app.use(express.json())
 // //auth - url по якому роутер authRouter буде прослуховуватися
-// app.use('/auth', authRouter)
+app.use('api/auth', authRouter)
 
 const start = async () => {
     try {
